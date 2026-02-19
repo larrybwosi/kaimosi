@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --color-background: 0 0% 100%;
+  --color-foreground: 222.2 84% 4.9%;
+  --color-card: 0 0% 100%;
+  --color-card-foreground: 222.2 84% 4.9%;
+  --color-popover: 0 0% 100%;
+  --color-popover-foreground: 222.2 84% 4.9%;
+  --color-primary: 142 76% 36%;
+  --color-primary-foreground: 0 0% 100%;
+  --color-secondary: 210 40% 96.1%;
+  --color-secondary-foreground: 222.2 47.4% 11.2%;
+  --color-muted: 210 40% 96.1%;
+  --color-muted-foreground: 215.4 16.3% 46.9%;
+  --color-accent: 210 40% 96.1%;
+  --color-accent-foreground: 222.2 47.4% 11.2%;
+  --color-destructive: 0 84.2% 60.2%;
+  --color-destructive-foreground: 0 0% 100%;
+  --color-border: 214.3 31.8% 91.4%;
+  --color-input: 214.3 31.8% 91.4%;
+  --color-ring: 142 76% 36%;
+  --radius: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  @theme inline {
+    --color-background: 222.2 84% 4.9%;
+    --color-foreground: 0 0% 100%;
+    --color-card: 222.2 84% 4.9%;
+    --color-card-foreground: 0 0% 100%;
+    --color-popover: 222.2 84% 4.9%;
+    --color-popover-foreground: 0 0% 100%;
+    --color-primary: 142 76% 36%;
+    --color-primary-foreground: 0 0% 100%;
+    --color-secondary: 217.2 32.6% 17.5%;
+    --color-secondary-foreground: 0 0% 100%;
+    --color-muted: 217.2 32.6% 17.5%;
+    --color-muted-foreground: 215 20.2% 65.1%;
+    --color-accent: 217.2 32.6% 17.5%;
+    --color-accent-foreground: 0 0% 100%;
+    --color-destructive: 0 62.8% 30.6%;
+    --color-destructive-foreground: 0 0% 100%;
+    --color-border: 217.2 32.6% 17.5%;
+    --color-input: 217.2 32.6% 17.5%;
+    --color-ring: 142 76% 36%;
+  }
+}

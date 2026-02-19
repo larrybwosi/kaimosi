@@ -1,0 +1,35 @@
+{
+  "name": "@kaimosi/print-on-demand",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3003",
+    "build": "next build",
+    "start": "next start -p 3003",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf .next node_modules"
+  },
+  "dependencies": {
+    "@kaimosi/auth": "workspace:*",
+    "@kaimosi/database": "workspace:*",
+    "@kaimosi/types": "workspace:*",
+    "@kaimosi/ui": "workspace:*",
+    "@kaimosi/utils": "workspace:*",
+    "@vercel/analytics": "1.3.1",
+    "lucide-react": "^0.454.0",
+    "next": "16.1.6",
+    "next-themes": "^0.4.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.9",
+    "@types/node": "^22",
+    "@types/react": "latest",
+    "@types/react-dom": "^19",
+    "postcss": "^8.5",
+    "tailwindcss": "^4.1.9",
+    "typescript": "^5"
+  }
+}

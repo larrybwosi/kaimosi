@@ -1,13 +1,26 @@
 {
-  "name": "kaimosi",
+  "name": "kaimosi-monorepo",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
-    "lint": "eslint -c config/eslint.config.js .",
-    "start": "next start",
-    "postinstall": "prisma generate "
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "start": "turbo run start",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:generate": "turbo run db:generate",
+    "db:push": "turbo run db:push",
+    "db:studio": "cd packages/database && pnpm db:studio",
+    "type-check": "turbo run type-check"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
@@ -85,7 +98,9 @@
     "baseline-browser-mapping": "^2.9.19",
     "jsdom": "^28.1.0",
     "postcss": "^8.5",
+    "prettier": "^3.2.5",
     "tailwindcss": "^4.1.9",
+    "turbo": "^2.3.0",
     "tw-animate-css": "1.3.3",
     "typescript": "^5"
   },

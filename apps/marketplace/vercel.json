@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "cd ../.. && pnpm turbo run build --filter=@kaimosi/marketplace...",
+  "installCommand": "cd ../.. && pnpm install",
+  "framework": "nextjs"
+}
