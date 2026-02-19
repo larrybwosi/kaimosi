@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "plugins": [{ "name": "next" }],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@kaimosi/ui": ["../../packages/ui/src"],
+      "@kaimosi/utils": ["../../packages/utils/src"],
+      "@kaimosi/types": ["../../packages/types/src"],
+      "@kaimosi/database": ["../../packages/database/src"],
+      "@kaimosi/auth": ["../../packages/auth/src"],
+      "@kaimosi/cms": ["../../packages/cms/src"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".next", "out"]
+}

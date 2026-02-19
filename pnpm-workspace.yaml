@@ -1,4 +1,12 @@
 packages:
-  - 'services/*'
-  - 'shared/*'
-  - 'packages/*'
+  # Applications
+  - "apps/*"
+  
+  # Shared packages
+  - "packages/*"
+  
+  # Backend services (future)
+  - "services/*"
+  
+  # Development tools
+  - "tools/*"

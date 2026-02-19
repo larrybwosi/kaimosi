@@ -1,0 +1,21 @@
+{
+  "name": "@kaimosi/cms",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf node_modules"
+  },
+  "dependencies": {
+    "@sanity/client": "^7.15.0",
+    "@sanity/image-url": "1.2.0",
+    "@portabletext/react": "6.0.2",
+    "next-sanity": "12.1.0",
+    "sanity": "4.22.0"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}

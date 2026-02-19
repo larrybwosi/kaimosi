@@ -1,44 +1,28 @@
 {
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "target": "ES6",
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@kaimosi/types": [
-        "./shared/types"
-      ]
+      "@kaimosi/database": ["./packages/database/src"],
+      "@kaimosi/ui": ["./packages/ui/src"],
+      "@kaimosi/utils": ["./packages/utils/src"],
+      "@kaimosi/types": ["./packages/types/src"],
+      "@kaimosi/auth": ["./packages/auth/src"],
+      "@kaimosi/cms": ["./packages/cms/src"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".next/dev/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules"
+  "include": [],
+  "exclude": ["node_modules", "dist", ".next", "out"],
+  "references": [
+    { "path": "./packages/database" },
+    { "path": "./packages/ui" },
+    { "path": "./packages/utils" },
+    { "path": "./packages/types" },
+    { "path": "./packages/auth" },
+    { "path": "./packages/cms" },
+    { "path": "./apps/web" },
+    { "path": "./apps/marketplace" },
+    { "path": "./apps/properties" },
+    { "path": "./apps/print-on-demand" },
+    { "path": "./apps/admin" }
   ]
 }
