@@ -3,8 +3,8 @@ import type { Metadata, Viewport } from "next"
 import { DM_Sans, Playfair_Display } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { AuthProvider } from "@/lib/auth-context"
-import "./globals.css"
-// import '@kaimosi/ui/globals.css';
+// import "./globals.css"
+import '@kaimosi/ui/globals.css';
 
 const _dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" })
 const _playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" })

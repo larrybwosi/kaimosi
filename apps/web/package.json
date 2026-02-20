@@ -87,6 +87,8 @@
     "@types/node": "^22",
     "@types/react": "latest",
     "@types/react-dom": "^19",
+    "@workspace/eslint-config": "workspace:^",
+    "@workspace/typescript-config": "workspace:*",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5",
     "tailwindcss": "^4.1.9",
