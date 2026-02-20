@@ -165,6 +165,11 @@ export function MapMarker({
       el.addEventListener("click", onClick)
     }
 
+    if (isNaN(longitude) || isNaN(latitude)) {
+      console.warn(`Invalid coordinates for marker: ${longitude}, ${latitude}`);
+      return;
+    }
+
     const marker = new maplibregl.Marker({ element: el })?.setLngLat([longitude, latitude]).addTo(map)
 
     if (popup) {
@@ -202,6 +207,11 @@ export function MapPopup({
 
   React.useEffect(() => {
     if (!map) return
+
+    if (isNaN(longitude) || isNaN(latitude)) {
+      console.warn(`Invalid coordinates for popup: ${longitude}, ${latitude}`);
+      return;
+    }
 
     const popup = new maplibregl.Popup({ closeButton: true, closeOnClick: false })
       .setLngLat([longitude, latitude])

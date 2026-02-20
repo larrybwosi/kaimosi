@@ -186,23 +186,27 @@ export function TownMap() {
             <div className="h-[500px] lg:h-[600px]">
               <Map center={[townInfo.coordinates.lng, townInfo.coordinates.lat]} zoom={13}>
                 <MapControls />
-                {markers.map((marker) => (
-                  <MapMarker
-                    key={`${marker.type}-${marker.id}`}
-                    longitude={marker.coordinates?.lng}
-                    latitude={marker.coordinates?.lat}
-                    color={getMarkerColor(marker.type)}
-                    onClick={() =>
-                      setSelectedPlace({
-                        id: marker.id,
-                        name: marker.name,
-                        type: marker.type,
-                        description: marker.description,
-                        address: marker.address,
-                      })
-                    }
-                  />
-                ))}
+                {markers.map((marker) => {
+                  if (!marker.coordinates?.lng || !marker.coordinates?.lat) return null;
+                  
+                  return (
+                    <MapMarker
+                      key={`${marker.type}-${marker.id}`}
+                      longitude={marker.coordinates.lng}
+                      latitude={marker.coordinates.lat}
+                      color={getMarkerColor(marker.type)}
+                      onClick={() =>
+                        setSelectedPlace({
+                          id: marker.id,
+                          name: marker.name,
+                          type: marker.type,
+                          description: marker.description,
+                          address: marker.address,
+                        })
+                      }
+                    />
+                  );
+                })}
               </Map>
             </div>
 
