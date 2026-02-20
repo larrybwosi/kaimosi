@@ -4,12 +4,6 @@
     "**/.env.*local",
     "**/.env"
   ],
-  "globalEnv": [
-    "NODE_ENV",
-    "VERCEL",
-    "VERCEL_ENV",
-    "VERCEL_URL"
-  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
@@ -18,29 +12,11 @@
         "!.next/cache/**",
         "dist/**",
         "build/**"
-      ],
-      "env": [
-        "DATABASE_URL",
-        "NEXT_PUBLIC_SANITY_PROJECT_ID",
-        "NEXT_PUBLIC_SANITY_DATASET",
-        "GOOGLE_CLIENT_ID",
-        "GOOGLE_CLIENT_SECRET",
-        "GITHUB_CLIENT_ID",
-        "GITHUB_CLIENT_SECRET"
       ]
     },
     "dev": {
       "cache": false,
-      "persistent": true,
-      "env": [
-        "DATABASE_URL",
-        "NEXT_PUBLIC_SANITY_PROJECT_ID",
-        "NEXT_PUBLIC_SANITY_DATASET",
-        "GOOGLE_CLIENT_ID",
-        "GOOGLE_CLIENT_SECRET",
-        "GITHUB_CLIENT_ID",
-        "GITHUB_CLIENT_SECRET"
-      ]
+      "persistent": true
     },
     "lint": {
       "dependsOn": ["^build"],
