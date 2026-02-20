@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
+import { Button } from "@kaimosi/ui"
 import { ArrowRight, Play, MapPin, Users, Calendar } from "lucide-react"
 import { townInfo } from "@/lib/data"
 

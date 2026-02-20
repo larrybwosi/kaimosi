@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Menu, X, MapPin, Store, Utensils, Bed, Home, Calendar, BookOpen, Users, ArrowRight, type LucideIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@kaimosi/ui"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,8 +11,8 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+} from "@kaimosi/ui"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@kaimosi/ui"
 import { cn } from "@/lib/utils"
 import { UserMenu } from "@/components/auth/user-menu"
 

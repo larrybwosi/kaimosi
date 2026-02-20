@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { Search, Grid, List, Plus } from 'lucide-react'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Input } from '@kaimosi/ui'
+import { Button } from '@kaimosi/ui'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@kaimosi/ui'
 import { TemplateGrid } from '@/components/print-on-demand/template-grid'
 import { TemplateFilters } from '@/components/print-on-demand/template-filters'
 import { useRouter } from 'next/navigation'

@@ -3,9 +3,9 @@ import { SiteFooter } from "@/components/site-footer"
 import { institutions, townInfo } from "@/lib/data"
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Button } from "@kaimosi/ui"
+import { Card, CardContent } from "@kaimosi/ui"
+import { Badge } from "@kaimosi/ui"
 import {
   GraduationCap,
   Users,

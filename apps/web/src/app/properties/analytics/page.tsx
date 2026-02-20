@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { TrendingUp, TrendingDown, Eye, Heart, Share2, Search, MapPin, Home, DollarSign, Calendar, BarChart3, PieChart, Activity } from 'lucide-react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@kaimosi/ui'
+import { Badge } from '@kaimosi/ui'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@kaimosi/ui'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@kaimosi/ui'
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart as RePieChart, Pie, Cell } from 'recharts'
 
 export default function AnalyticsPage() {

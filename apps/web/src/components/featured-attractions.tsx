@@ -1,9 +1,9 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Card } from "@/components/ui/card"
+import { Button } from "@kaimosi/ui"
+import { Badge } from "@kaimosi/ui"
+import { Card } from "@kaimosi/ui"
 import { getFeaturedAttractions } from "@/lib/sanity-queries"
 import { ShareButton } from "@/components/share/share-button"
 

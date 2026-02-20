@@ -1,8 +1,8 @@
 "use client"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Label } from "@/components/ui/label"
+import { Card, CardContent, CardHeader, CardTitle } from "@kaimosi/ui"
+import { Checkbox } from "@kaimosi/ui"
+import { Label } from "@kaimosi/ui"
 import { useRouter, useSearchParams } from "next/navigation"
 
 export function CategoryFilter({ categories }: { categories: any[] }) {

@@ -1,8 +1,8 @@
 'use client'
 
-import { Card } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { Card } from '@kaimosi/ui'
+import { Badge } from '@kaimosi/ui'
+import { Button } from '@kaimosi/ui'
 import { ChevronRight, Package, Truck, CheckCircle2 } from 'lucide-react'
 import { format } from 'date-fns'
 import Link from 'next/link'

@@ -1,10 +1,10 @@
 'use client'
 
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Slider } from '@/components/ui/slider'
-import { Separator } from '@/components/ui/separator'
+import { Input } from '@kaimosi/ui'
+import { Label } from '@kaimosi/ui'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@kaimosi/ui'
+import { Slider } from '@kaimosi/ui'
+import { Separator } from '@kaimosi/ui'
 
 interface Layer {
   id: string

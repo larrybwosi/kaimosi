@@ -1,6 +1,6 @@
 "use client"
 
-import { Card } from "@/components/ui/card"
+import { Card } from "@kaimosi/ui"
 import { shareCardTemplates } from "@/lib/share-card"
 import { MapPin, ShoppingBag, Calendar, Utensils, Sparkles, Check } from "lucide-react"
 import { cn } from "@/lib/utils"

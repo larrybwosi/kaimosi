@@ -1,9 +1,9 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@kaimosi/ui"
 import { Share2 } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@kaimosi/ui"
 
 interface ShareButtonProps {
   type: "product" | "attraction" | "restaurant" | "event" | "hostel"

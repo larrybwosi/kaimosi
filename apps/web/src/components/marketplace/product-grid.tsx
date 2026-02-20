@@ -1,8 +1,8 @@
 "use client"
 
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter } from "@kaimosi/ui"
+import { Badge } from "@kaimosi/ui"
+import { Button } from "@kaimosi/ui"
 import { ShoppingCart, Star } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"

@@ -4,10 +4,10 @@ import { getAttractionBySlug, getAllAttractions } from "@/lib/sanity-queries"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Button } from "@kaimosi/ui"
+import { Badge } from "@kaimosi/ui"
+import { Card, CardContent } from "@kaimosi/ui"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@kaimosi/ui"
 import {
   Clock,
   MapPin,

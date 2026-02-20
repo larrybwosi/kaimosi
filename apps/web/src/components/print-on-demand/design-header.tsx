@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import { ChevronLeft, Save, Download, RotateCcw, ZoomIn, ZoomOut } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Button } from '@kaimosi/ui'
+import { Input } from '@kaimosi/ui'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@kaimosi/ui'
 import { useRouter } from 'next/navigation'
 
 interface DesignHeaderProps {

@@ -1,7 +1,7 @@
 "use client"
 
-import { Label } from "@/components/ui/label"
-import { Input } from "@/components/ui/input"
+import { Label } from "@kaimosi/ui"
+import { Input } from "@kaimosi/ui"
 
 interface ColorCustomizerProps {
   backgroundColor: string

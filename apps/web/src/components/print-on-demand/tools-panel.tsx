@@ -1,8 +1,8 @@
 'use client'
 
 import { Type, Image, Upload, Square, Circle, Minus } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { Button } from '@kaimosi/ui'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@kaimosi/ui'
 import { useRef } from 'react'
 
 interface ToolsPanelProps {

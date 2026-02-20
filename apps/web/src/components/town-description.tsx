@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
+import { Button } from "@kaimosi/ui"
+import { Badge } from "@kaimosi/ui"
 import { ArrowRight, TreePine, Mountain, Thermometer } from "lucide-react"
 import { townInfo } from "@/lib/data"
 

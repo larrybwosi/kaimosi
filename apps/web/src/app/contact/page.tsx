@@ -1,7 +1,7 @@
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { townInfo } from "@/lib/data"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@kaimosi/ui"
 import { MapPin, Phone, Mail, Clock, MessageSquare, Users, Camera, Building } from "lucide-react"
 import { ContactForm } from "@/components/contact-form"
 

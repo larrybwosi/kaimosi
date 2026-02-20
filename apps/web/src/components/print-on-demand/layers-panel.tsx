@@ -1,8 +1,8 @@
 'use client'
 
 import { Eye, EyeOff, Copy, Trash2, GripVertical } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { ScrollArea } from '@/components/ui/scroll-area'
+import { Button } from '@kaimosi/ui'
+import { ScrollArea } from '@kaimosi/ui'
 import { cn } from '@/lib/utils'
 
 interface Layer {

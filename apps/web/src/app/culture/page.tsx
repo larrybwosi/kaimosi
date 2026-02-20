@@ -3,8 +3,8 @@ import { SiteFooter } from "@/components/site-footer"
 import { cultureHighlights, townInfo } from "@/lib/data"
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@kaimosi/ui"
+import { Card, CardContent } from "@kaimosi/ui"
 import { ArrowRight, Music, Palette, Utensils, Users } from "lucide-react"
 
 export const metadata = {

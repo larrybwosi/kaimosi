@@ -3,13 +3,13 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MapPin, Bed, Bath, Maximize, Heart, ArrowRight, MessageSquare, Star, ThumbsUp, ThumbsDown } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Textarea } from '@/components/ui/textarea'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Label } from '@/components/ui/label'
-import { Separator } from '@/components/ui/separator'
+import { Button } from '@kaimosi/ui'
+import { Card } from '@kaimosi/ui'
+import { Badge } from '@kaimosi/ui'
+import { Textarea } from '@kaimosi/ui'
+import { RadioGroup, RadioGroupItem } from '@kaimosi/ui'
+import { Label } from '@kaimosi/ui'
+import { Separator } from '@kaimosi/ui'
 
 export default function SharePropertyPage({ params }: { params: { token: string } }) {
   const [property, setProperty] = useState<any>(null)

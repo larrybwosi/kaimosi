@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@kaimosi/ui"
 import { Store, Utensils, Bed, GraduationCap, TreePine, Calendar } from "lucide-react"
 
 const quickLinks = [

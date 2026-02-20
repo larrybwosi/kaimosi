@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Heart, Share2, MapPin, Bed, Bath, Maximize, Calendar, TrendingUp, Eye, Users, ChevronLeft, ChevronRight, Image as ImageIcon, Layers, Box, Download } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Separator } from '@/components/ui/separator'
-import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import { Button } from '@kaimosi/ui'
+import { Card } from '@kaimosi/ui'
+import { Badge } from '@kaimosi/ui'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@kaimosi/ui'
+import { Separator } from '@kaimosi/ui'
+import { Dialog, DialogContent, DialogTrigger } from '@kaimosi/ui'
 
 export default function PropertyDetailPage({ params }: { params: { id: string } }) {
   const [property, setProperty] = useState<any>(null)

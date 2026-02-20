@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { Input } from "@/components/ui/input"
+import { Input } from "@kaimosi/ui"
 import { Search } from "lucide-react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useState } from "react"

@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { User, LogOut, LayoutDashboard, Plus, Shield } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@kaimosi/ui"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,8 +11,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+} from "@kaimosi/ui"
+import { Avatar, AvatarFallback } from "@kaimosi/ui"
 import { useAuth } from "@/lib/auth-context"
 
 export function UserMenu() {

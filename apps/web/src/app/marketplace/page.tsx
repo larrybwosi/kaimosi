@@ -4,7 +4,7 @@ import { ProductGrid } from "@/components/marketplace/product-grid"
 import { CategoryFilter } from "@/components/marketplace/category-filter"
 import { DiscountBanner } from "@/components/marketplace/discount-banner"
 import { MarketplaceSearch } from "@/components/marketplace/marketplace-search"
-import { Button } from "@/components/ui/button"
+import { Button } from "@kaimosi/ui"
 import { ShoppingCart } from "lucide-react"
 import Link from "next/link"
 

@@ -1,8 +1,8 @@
 'use client'
 
-import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
+import { Card } from '@kaimosi/ui'
+import { Button } from '@kaimosi/ui'
+import { Badge } from '@kaimosi/ui'
 import { Plus } from 'lucide-react'
 
 export function AdminProductManagement() {

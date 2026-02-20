@@ -1,6 +1,6 @@
 'use client'
 
-import { Card } from '@/components/ui/card'
+import { Card } from '@kaimosi/ui'
 
 export function AdminStats() {
   return (
