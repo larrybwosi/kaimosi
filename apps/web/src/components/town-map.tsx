@@ -189,8 +189,8 @@ export function TownMap() {
                 {markers.map((marker) => (
                   <MapMarker
                     key={`${marker.type}-${marker.id}`}
-                    longitude={marker.coordinates.lng}
-                    latitude={marker.coordinates.lat}
+                    longitude={marker.coordinates?.lng}
+                    latitude={marker.coordinates?.lat}
                     color={getMarkerColor(marker.type)}
                     onClick={() =>
                       setSelectedPlace({

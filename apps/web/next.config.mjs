@@ -10,6 +10,7 @@ const nextConfig = {
     '@kaimosi/cms',
   ],
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',

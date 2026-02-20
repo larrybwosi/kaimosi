@@ -165,7 +165,7 @@ export function MapMarker({
       el.addEventListener("click", onClick)
     }
 
-    const marker = new maplibregl.Marker({ element: el }).setLngLat([longitude, latitude]).addTo(map)
+    const marker = new maplibregl.Marker({ element: el })?.setLngLat([longitude, latitude]).addTo(map)
 
     if (popup) {
       const popupEl = new maplibregl.Popup({ offset: 25, closeButton: true })
