@@ -274,7 +274,7 @@ export class PodTemplateService {
       data: {
         podDesignId: design.id,
         versionNumber: 1,
-        designData: template.designData,
+        designData: template.designData!,
         label: 'From Template',
       },
     })

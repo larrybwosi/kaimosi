@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { Search, X, ChevronDown } from 'lucide-react'
+import { X, ChevronDown } from 'lucide-react'
 import { PropertyFilters } from '@/shared/types'
 
 interface SearchFiltersProps {
@@ -50,13 +50,13 @@ export function SearchFilters({ onFiltersChange, isLoading = false }: SearchFilt
     handleFilterChange({ ...filters, type: updated })
   }
 
-  const handleAmenityToggle = (amenity: string) => {
-    const amenities = filters.amenities || []
-    const updated = amenities.includes(amenity)
-      ? amenities.filter((a) => a !== amenity)
-      : [...amenities, amenity]
-    handleFilterChange({ ...filters, amenities: updated })
-  }
+  // const handleAmenityToggle = (amenity: string) => {
+  //   const amenities = filters.amenities || []
+  //   const updated = amenities.includes(amenity)
+  //     ? amenities.filter((a) => a !== amenity)
+  //     : [...amenities, amenity]
+  //   handleFilterChange({ ...filters, amenities: updated })
+  // }
 
   const handleClearFilters = () => {
     setFilters({})

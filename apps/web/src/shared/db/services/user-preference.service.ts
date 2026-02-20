@@ -1,4 +1,4 @@
-import { prisma } from '../prisma-client'
+import { prisma } from '../client';
 
 export class UserPreferenceService {
   // Get user preferences
@@ -8,60 +8,69 @@ export class UserPreferenceService {
       include: {
         searchHistory: {
           orderBy: { createdAt: 'desc' },
-          take: 20
+          take: 20,
         },
         recommendations: {
           where: {
             viewed: false,
-            expiresAt: { gt: new Date() }
+            expiresAt: { gt: new Date() },
           },
           orderBy: { score: 'desc' },
-          take: 10
-        }
-      }
-    })
+          take: 10,
+        },
+      },
+    });
   }
 
   // Create or update preferences
-  static async upsert(userId: string, data: {
-    minPrice?: number
-    maxPrice?: number
-    preferredLocations?: string[]
-    bedrooms?: number[]
-    bathrooms?: number[]
-    propertyTypes?: string[]
-    preferredAmenities?: string[]
-    petFriendly?: boolean
-    furnished?: boolean
-    leaseType?: string
-    moveInDate?: Date
-    notificationsEnabled?: boolean
-  }) {
+  static async upsert(
+    userId: string,
+    data: {
+      minPrice?: number;
+      maxPrice?: number;
+      preferredLocations?: string[];
+      bedrooms?: number[];
+      bathrooms?: number[];
+      propertyTypes?: string[];
+      preferredAmenities?: string[];
+      petFriendly?: boolean;
+      furnished?: boolean;
+      leaseType?: string;
+      moveInDate?: Date;
+      notificationsEnabled?: boolean;
+    }
+  ) {
     return await prisma.userPreference.upsert({
       where: { userId },
       create: {
         userId,
-        ...data
+        ...data,
       },
-      update: data
-    })
+      update: data,
+    });
   }
 
   // Track search query
-  static async trackSearch(userId: string, query?: string, filters?: any, resultsCount?: number, selectedPropertyId?: string) {
+  static async trackSearch(
+    userId: string,
+    query?: string,
+    filters?: any,
+    resultsCount?: number,
+    selectedPropertyId?: string
+  ) {
     const preference = await prisma.userPreference.findUnique({
-      where: { userId }
-    })
+      where: { userId },
+    });
 
     if (!preference) {
-      await this.upsert(userId, {})
+      await this.upsert(userId, {});
     }
 
     const userPreference = await prisma.userPreference.findUnique({
-      where: { userId }
-    })
+      where: { userId },
+    });
 
-    if (!userPreference) return null
+    if (!userPreference) return null;
 
     return await prisma.searchQuery.create({
       data: {
@@ -69,9 +78,9 @@ export class UserPreferenceService {
         query,
         filters: filters ? JSON.stringify(filters) : undefined,
         resultsCount,
-        selectedPropertyId
-      }
-    })
+        selectedPropertyId,
+      },
+    });
   }
 
   // Get user favorites
@@ -84,13 +93,13 @@ export class UserPreferenceService {
             location: true,
             images: { take: 1, orderBy: { displayOrder: 'asc' } },
             _count: {
-              select: { userFavorites: true }
-            }
-          }
-        }
+              select: { userFavorites: true },
+            },
+          },
+        },
       },
-      orderBy: { createdAt: 'desc' }
-    })
+      orderBy: { createdAt: 'desc' },
+    });
   }
 
   // Add to favorites
@@ -100,23 +109,23 @@ export class UserPreferenceService {
         userId,
         propertyId,
         listName: listName || 'Favorites',
-        notes
-      }
-    })
+        notes,
+      },
+    });
 
     // Update analytics
     await prisma.propertyAnalytics.upsert({
       where: { propertyId },
       create: {
         propertyId,
-        totalFavorites: 1
+        totalFavorites: 1,
       },
       update: {
-        totalFavorites: { increment: 1 }
-      }
-    })
+        totalFavorites: { increment: 1 },
+      },
+    });
 
-    return favorite
+    return favorite;
   }
 
   // Remove from favorites
@@ -126,21 +135,21 @@ export class UserPreferenceService {
         where: {
           userId_propertyId: {
             userId,
-            propertyId
-          }
-        }
+            propertyId,
+          },
+        },
       }),
       prisma.propertyAnalytics.upsert({
         where: { propertyId },
         create: {
           propertyId,
-          totalFavorites: 0
+          totalFavorites: 0,
         },
         update: {
-          totalFavorites: { decrement: 1 }
-        }
-      })
-    ])
+          totalFavorites: { decrement: 1 },
+        },
+      }),
+    ]);
   }
 
   // Check if favorited
@@ -149,10 +158,10 @@ export class UserPreferenceService {
       where: {
         userId_propertyId: {
           userId,
-          propertyId
-        }
-      }
-    })
-    return !!favorite
+          propertyId,
+        },
+      },
+    });
+    return !!favorite;
   }
 }

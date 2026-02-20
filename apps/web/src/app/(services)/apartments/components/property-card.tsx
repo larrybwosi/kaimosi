@@ -34,11 +34,11 @@ export function PropertyCard({ property, onFavoriteToggle, isFavorited = false }
   }
 
   const image = property.images?.[0]
-  const imageUrl = image?.thumbnailUrl || image?.url || property.featuredImageUrl || '/placeholder.svg?height=300&width=400'
+  const imageUrl = image?.url || '/placeholder.svg?height=300&width=400'
 
   const formattedPrice = new Intl.NumberFormat('en-KE', {
     style: 'currency',
-    currency: property.priceUnit || 'KES',
+    currency: 'KES',
     maximumFractionDigits: 0,
   }).format(property.price)
 
@@ -92,35 +92,35 @@ export function PropertyCard({ property, onFavoriteToggle, isFavorited = false }
           {/* Location */}
           <div className="flex items-center gap-1 text-gray-600 text-sm mb-3">
             <MapPin className="w-4 h-4 flex-shrink-0" />
-            <span className="line-clamp-1">{property.location?.district || 'Location'}</span>
+            <span className="line-clamp-1">{property.location?.country || 'Location'}</span>
           </div>
 
           {/* Price */}
           <p className="text-xl font-bold text-primary mb-3">
             {formattedPrice}
             <span className="text-sm text-gray-600 font-normal ml-1">
-              /{property.pricePerUnit}
+              /{property.price}
             </span>
           </p>
 
           {/* Details */}
           <div className="flex items-center gap-4 text-sm text-gray-700 mb-3">
-            {property.bedrooms > 0 && (
+            {property?.bedrooms || 0 > 0 && (
               <div className="flex items-center gap-1">
                 <Bed className="w-4 h-4" />
-                <span>{property.bedrooms} bed{property.bedrooms !== 1 ? 's' : ''}</span>
+                <span>{property?.bedrooms} bed{property?.bedrooms !== 1 ? 's' : ''}</span>
               </div>
             )}
-            {property.bathrooms > 0 && (
+            {property?.bathrooms || 0 > 0 && (
               <div className="flex items-center gap-1">
                 <Bath className="w-4 h-4" />
-                <span>{property.bathrooms} bath</span>
+                <span>{property?.bathrooms} bath</span>
               </div>
             )}
-            {property.areaSize && (
+            {property?.area && (
               <div className="flex items-center gap-1">
                 <Ruler className="w-4 h-4" />
-                <span>{property.areaSize} m²</span>
+                <span>{property.area} m²</span>
               </div>
             )}
           </div>
@@ -130,10 +130,10 @@ export function PropertyCard({ property, onFavoriteToggle, isFavorited = false }
             <div className="flex flex-wrap gap-1 mt-auto">
               {property.amenities.slice(0, 3).map((amenity) => (
                 <span
-                  key={amenity.id}
+                  key={amenity}
                   className="inline-block bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs"
                 >
-                  {amenity.name}
+                  {amenity}
                 </span>
               ))}
               {property.amenities.length > 3 && (
