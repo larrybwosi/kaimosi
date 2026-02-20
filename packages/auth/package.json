@@ -11,6 +11,7 @@
   "dependencies": {
     "@kaimosi/database": "workspace:*",
     "@kaimosi/types": "workspace:*",
+    "@prisma/client": "7.4.1",
     "better-auth": "1.4.11",
     "better-sqlite3": "latest"
   },
