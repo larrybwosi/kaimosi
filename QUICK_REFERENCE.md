@@ -512,7 +512,7 @@ cd apps/admin && vercel --prod
 2. Review [IMPLEMENTATION_GUIDE.md](./IMPLEMENTATION_GUIDE.md)
 3. Review [MONOREPO_SETUP_PLAN.md](./MONOREPO_SETUP_PLAN.md)
 4. Check Turborepo troubleshooting
-5. Ask the team
+5. Ask the team 
 
 ---
 
