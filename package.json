@@ -3,21 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@10.29.2",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "lint": "turbo run lint",
-    "start": "turbo run start",
-    "clean": "turbo run clean && rm -rf node_modules",
+    "build": "turbo  build",
+    "dev": "turbo  dev --parallel",
+    "lint": "turbo  lint",
+    "start": "turbo  start",
+    "clean": "turbo  clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "db:generate": "turbo run db:generate",
-    "db:push": "turbo run db:push",
+    "db:generate": "turbo  db:generate",
+    "db:push": "turbo  db:push",
     "db:studio": "cd packages/database && pnpm db:studio",
-    "type-check": "turbo run type-check"
+    "type-check": "turbo  type-check"
   },
   "engines": {
     "node": ">=18.0.0"
