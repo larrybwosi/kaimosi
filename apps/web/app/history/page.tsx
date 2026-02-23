@@ -3,7 +3,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { historyTimeline, townInfo } from "@/lib/data"
 import Image from "next/image"
 import Link from "next/link"
-import { Button } from "@kaimosi/ui"
+import { Button } from "@workspace/ui/components/button"
 import { ArrowRight } from "lucide-react"
 
 export const metadata = {

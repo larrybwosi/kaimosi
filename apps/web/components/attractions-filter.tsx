@@ -1,7 +1,7 @@
 "use client"
 
+import { Button } from "@workspace/ui/components/button"
 import { useState } from "react"
-import { Button } from "@kaimosi/ui"
 
 interface AttractionsFilterProps {
   categories: string[]

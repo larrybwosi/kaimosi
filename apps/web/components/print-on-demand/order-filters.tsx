@@ -1,10 +1,10 @@
 'use client'
 
-import { Label } from '@kaimosi/ui'
-import { Checkbox } from '@kaimosi/ui'
-import { Button } from '@kaimosi/ui'
-import { Separator } from '@kaimosi/ui'
-import { Calendar } from '@kaimosi/ui'
+import { Label } from "@workspace/ui/components/label"
+import { Checkbox } from "@workspace/ui/components/checkbox"
+import { Button } from "@workspace/ui/components/button"
+import { Separator } from "@workspace/ui/components/separator"
+import { Calendar } from "@workspace/ui/components/calendar"
 import { useState } from 'react'
 
 export function OrderFilters() {

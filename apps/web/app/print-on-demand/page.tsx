@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { Button } from '@kaimosi/ui'
-import { Card } from '@kaimosi/ui'
-import { Badge } from '@kaimosi/ui'
+import { Button } from "@workspace/ui/components/button"
+import { Card } from "@workspace/ui/components/card"
+import { Badge } from "@workspace/ui/components/badge"
 import { Palette, ShoppingBag, Package, TrendingUp, Zap, Shield } from 'lucide-react'
 
 export default function PrintOnDemandPage() {

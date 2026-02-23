@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
-import { Card } from '@kaimosi/ui'
+import { Card } from "@workspace/ui/components/card"
 
 interface Layer {
   id: string

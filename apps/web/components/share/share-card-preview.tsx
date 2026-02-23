@@ -1,6 +1,6 @@
 "use client"
 
-import { Card } from "@kaimosi/ui"
+import { Card } from "@workspace/ui/components/card"
 import Image from "next/image"
 import type { ShareCard } from "@/lib/share-card"
 import { MapPin, ShoppingBag, Calendar, Utensils, Sparkles } from "lucide-react"

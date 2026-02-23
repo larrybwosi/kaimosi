@@ -5,9 +5,9 @@ import type React from "react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Eye, EyeOff, Loader2 } from "lucide-react"
-import { Button } from "@kaimosi/ui"
-import { Input } from "@kaimosi/ui"
-import { Label } from "@kaimosi/ui"
+import { Button } from "@workspace/ui/components/button"
+import { Input } from "@workspace/ui/components/input"
+import { Label } from "@workspace/ui/components/label"
 import { useAuth } from "@/lib/auth-context"
 
 export function LoginForm() {

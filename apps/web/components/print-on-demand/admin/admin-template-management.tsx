@@ -1,8 +1,8 @@
 'use client'
 
-import { Card } from '@kaimosi/ui'
-import { Button } from '@kaimosi/ui'
-import { Badge } from '@kaimosi/ui'
+import { Card } from "@workspace/ui/components/card"
+import { Button } from "@workspace/ui/components/button"
+import { Badge } from "@workspace/ui/components/badge"
 import { Plus } from 'lucide-react'
 
 export function AdminTemplateManagement() {

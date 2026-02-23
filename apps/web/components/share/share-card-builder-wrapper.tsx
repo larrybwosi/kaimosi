@@ -2,7 +2,7 @@
 
 import { Suspense } from "react"
 import { ShareCardBuilder } from "./share-card-builder"
-import { Card } from "@kaimosi/ui"
+import { Card } from "@workspace/ui/components/card"
 
 export function ShareCardBuilderWrapper() {
   return (

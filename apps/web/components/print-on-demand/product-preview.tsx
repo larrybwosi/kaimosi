@@ -1,7 +1,7 @@
 'use client'
 
-import { Card } from '@kaimosi/ui'
-import { Badge } from '@kaimosi/ui'
+import { Card } from "@workspace/ui/components/card"
+import { Badge } from "@workspace/ui/components/badge"
 
 interface ProductPreviewProps {
   productType: string

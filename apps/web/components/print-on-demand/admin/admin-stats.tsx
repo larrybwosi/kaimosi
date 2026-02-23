@@ -1,6 +1,6 @@
 'use client'
 
-import { Card } from '@kaimosi/ui'
+import { Card } from "@workspace/ui/components/card"
 
 export function AdminStats() {
   return (

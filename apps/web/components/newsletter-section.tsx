@@ -3,8 +3,8 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Button } from "@kaimosi/ui"
-import { Input } from "@kaimosi/ui"
+import { Button } from "@workspace/ui/components/button"
+import { Input } from "@workspace/ui/components/input"
 import { Mail, CheckCircle } from "lucide-react"
 
 export function NewsletterSection() {

@@ -3,11 +3,11 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Button } from "@kaimosi/ui"
-import { Input } from "@kaimosi/ui"
-import { Textarea } from "@kaimosi/ui"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@kaimosi/ui"
-import { Label } from "@kaimosi/ui"
+import { Button } from "@workspace/ui/components/button"
+import { Input } from "@workspace/ui/components/input"
+import { Textarea } from "@workspace/ui/components/textarea"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@workspace/ui/components/select"
+import { Label } from "@workspace/ui/components/label"
 import { CheckCircle, Loader2 } from "lucide-react"
 
 export function ContactForm() {

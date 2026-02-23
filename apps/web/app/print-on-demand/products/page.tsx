@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { ShoppingCart, Search } from 'lucide-react'
-import { Input } from '@kaimosi/ui'
-import { Button } from '@kaimosi/ui'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@kaimosi/ui'
+import { Input } from "@workspace/ui/components/input"
+import { Button } from "@workspace/ui/components/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
 import { ProductCard } from '@/components/print-on-demand/product-card'
-import { Badge } from '@kaimosi/ui'
+import { Badge } from "@workspace/ui/components/badge"
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 

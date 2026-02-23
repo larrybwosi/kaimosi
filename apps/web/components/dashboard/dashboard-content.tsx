@@ -17,10 +17,10 @@ import {
   MapPin,
   Calendar,
 } from "lucide-react"
-import { Button } from "@kaimosi/ui"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@kaimosi/ui"
-import { Badge } from "@kaimosi/ui"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@kaimosi/ui"
+import { Button } from "@workspace/ui/components/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@workspace/ui/components/card"
+import { Badge } from "@workspace/ui/components/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
 import { useAuth } from "@/lib/auth-context"
 
 const typeIcons = {

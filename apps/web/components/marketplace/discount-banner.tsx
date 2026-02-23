@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Badge } from "@kaimosi/ui"
+import { Badge } from "@workspace/ui/components/badge"
 import { Tag } from "lucide-react"
 
 export function DiscountBanner({ discounts }: { discounts: any[] }) {

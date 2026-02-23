@@ -3,16 +3,10 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { User, LogOut, LayoutDashboard, Plus, Shield } from "lucide-react"
-import { Button } from "@kaimosi/ui"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@kaimosi/ui"
-import { Avatar, AvatarFallback } from "@kaimosi/ui"
+import { Button } from "@workspace/ui/components/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@workspace/ui/components/dropdown-menu"
+import { DropdownMenuLabel } from "@workspace/ui/components/dropdown-menu"
+import { Avatar, AvatarFallback } from "@workspace/ui/components/avatar"
 import { useAuth } from "@/lib/auth-context"
 
 export function UserMenu() {

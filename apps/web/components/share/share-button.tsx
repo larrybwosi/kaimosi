@@ -1,9 +1,9 @@
 "use client"
 
-import { Button } from "@kaimosi/ui"
+import { Button } from "@workspace/ui/components/button"
 import { Share2 } from "lucide-react"
 import { useRouter } from "next/navigation"
-import { useToast } from "@kaimosi/ui"
+import { toast } from "sonner"
 
 interface ShareButtonProps {
   type: "product" | "attraction" | "restaurant" | "event" | "hostel"
@@ -16,8 +16,6 @@ interface ShareButtonProps {
 
 export function ShareButton({ type, slug, title, description, image, size = "sm" }: ShareButtonProps) {
   const router = useRouter()
-  const { toast } = useToast()
-
   const handleShare = async () => {
     try {
       // Build the share URL with deep link
@@ -39,25 +37,21 @@ export function ShareButton({ type, slug, title, description, image, size = "sm"
           text: description || title,
           url: deepLink,
         })
-        toast({
-          title: "Shared successfully",
+        toast.success("Shared successfully", {
           description: "Content shared!",
         })
       } else {
         // Fallback to our share card builder
         router.push(`/share?${params.toString()}`)
-        toast({
-          title: "Opening share builder",
+        toast.success("Opening share builder", {
           description: "Customize and share your card",
         })
       }
     } catch (error: any) {
       if (error.name !== "AbortError") {
         console.error("Share error:", error)
-        toast({
-          title: "Failed to share",
+        toast.error("Failed to share", {
           description: "Please try again",
-          variant: "destructive",
         })
       }
     }

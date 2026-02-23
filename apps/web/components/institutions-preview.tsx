@@ -1,8 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, GraduationCap, Users } from "lucide-react"
-import { Button } from "@kaimosi/ui"
-import { Card, CardContent } from "@kaimosi/ui"
+import { Button } from "@workspace/ui/components/button"
+import { Card, CardContent } from "@workspace/ui/components/card"
 import { institutions } from "@/lib/data"
 
 export function InstitutionsPreview() {

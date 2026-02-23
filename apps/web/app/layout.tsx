@@ -1,12 +1,11 @@
-import { DM_Sans, Geist, Geist_Mono, Playfair_Display } from "next/font/google"
+import { DM_Sans, Playfair_Display } from "next/font/google"
 
 import "@workspace/ui/globals.css"
 import { Providers } from "@/components/providers"
 import { Metadata, Viewport } from "next";
 
-
-const _dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
-const _playfair = Playfair_Display({
+const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
+const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
 });
@@ -85,7 +84,6 @@ export const metadata: Metadata = {
   generator: "v0.app",
 };
 
-
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#2d5a3d" },
@@ -96,15 +94,6 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
   
-const fontSans = Geist({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
-
-const fontMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
 
 export default function RootLayout({
   children,
@@ -148,9 +137,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`${fontSans.variable} ${fontMono.variable} font-sans antialiased `}
-      >
+      <body className={`${dmSans.variable} ${playfair.variable} font-sans antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

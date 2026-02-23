@@ -1,13 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { Card } from '@kaimosi/ui'
-import { Button } from '@kaimosi/ui'
-import { Badge } from '@kaimosi/ui'
-import { Input } from '@kaimosi/ui'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@kaimosi/ui'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@kaimosi/ui'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@kaimosi/ui'
+import { Card } from "@workspace/ui/components/card"
+import { Button } from "@workspace/ui/components/button"
+import { Badge } from "@workspace/ui/components/badge"
+import { Input } from "@workspace/ui/components/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@workspace/ui/components/select"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@workspace/ui/components/table"
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@workspace/ui/components/dialog"
 import { Eye, CheckCircle, XCircle, Truck } from 'lucide-react'
 import { format } from 'date-fns'
 

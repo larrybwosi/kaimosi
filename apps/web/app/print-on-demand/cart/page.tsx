@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from 'lucide-react'
-import { Card } from '@kaimosi/ui'
-import { Button } from '@kaimosi/ui'
-import { Separator } from '@kaimosi/ui'
-import { Input } from '@kaimosi/ui'
-import { Label } from '@kaimosi/ui'
+import { Card } from "@workspace/ui/components/card"
+import { Button } from "@workspace/ui/components/button"
+import { Separator } from "@workspace/ui/components/separator"
+import { Input } from "@workspace/ui/components/input"
+import { Label } from "@workspace/ui/components/label"
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 

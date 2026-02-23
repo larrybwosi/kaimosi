@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
-import { Card } from "@kaimosi/ui"
-import { Label } from "@kaimosi/ui"
-import { Input } from "@kaimosi/ui"
-import { Textarea } from "@kaimosi/ui"
-import { Button } from "@kaimosi/ui"
+import { Card } from "@workspace/ui/components/card"
+import { Label } from "@workspace/ui/components/label"
+import { Input } from "@workspace/ui/components/input"
+import { Textarea } from "@workspace/ui/components/textarea"
+import { Button } from "@workspace/ui/components/button"
 import { ShareCardPreview } from "./share-card-preview"
 import { ContentSelector } from "./content-selector"
 import { TemplateSelector } from "./template-selector"
@@ -14,7 +14,7 @@ import { ColorCustomizer } from "./color-customizer"
 import { Share2, Download, Copy, Check } from "lucide-react"
 import type { ShareCard } from "@/lib/share-card"
 import { generateWhatsAppShareUrl, generateDeepLink } from "@/lib/share-card"
-import { useToast } from "@kaimosi/ui"
+import { useToast } from "@workspace/ui/components/usetoast"
 
 export function ShareCardBuilder() {
   const { toast } = useToast()

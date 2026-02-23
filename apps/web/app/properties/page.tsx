@@ -3,16 +3,16 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Search, MapPin, Bed, Bath, Maximize, Heart, SlidersHorizontal, Grid3x3, LayoutList } from 'lucide-react'
-import { Button } from '@kaimosi/ui'
-import { Input } from '@kaimosi/ui'
-import { Card } from '@kaimosi/ui'
-import { Badge } from '@kaimosi/ui'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@kaimosi/ui'
-import { Slider } from '@kaimosi/ui'
-import { Checkbox } from '@kaimosi/ui'
-import { Label } from '@kaimosi/ui'
-import { Sheet, SheetContent, SheetTrigger } from '@kaimosi/ui'
-import { Tabs, TabsList, TabsTrigger } from '@kaimosi/ui'
+import { Button } from "@workspace/ui/components/button"
+import { Input } from "@workspace/ui/components/input"
+import { Card } from "@workspace/ui/components/card"
+import { Badge } from "@workspace/ui/components/badge"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@workspace/ui/components/select"
+import { Slider } from "@workspace/ui/components/slider"
+import { Checkbox } from "@workspace/ui/components/checkbox"
+import { Label } from "@workspace/ui/components/label"
+import { Sheet, SheetContent, SheetTrigger } from "@workspace/ui/components/sheet"
+import { Tabs, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
 
 export default function PropertiesPage() {
   const [view, setView] = useState<'grid' | 'list'>('grid')

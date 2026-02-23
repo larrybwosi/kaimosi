@@ -3,18 +3,11 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Menu, X, MapPin, Store, Utensils, Bed, Home, Calendar, BookOpen, Users, ArrowRight, type LucideIcon } from "lucide-react"
-import { Button } from "@kaimosi/ui"
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@kaimosi/ui"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@kaimosi/ui"
-import { cn } from "@/lib/utils"
+import { Button } from "@workspace/ui/components/button"
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@workspace/ui/components/navigation-menu"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@workspace/ui/components/sheet"
 import { UserMenu } from "@/components/auth/user-menu"
+import { cn } from "@workspace/ui/lib/utils"
 
 type NavigationItem = {
   name: string

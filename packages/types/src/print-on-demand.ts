@@ -1,5 +1,5 @@
-import { z } from 'zod';
-import { ImageSchema } from './common';
+import { z } from "zod";
+import { ImageSchema } from "./common.js";
 
 // Design types
 export const DesignSchema = z.object({
@@ -17,7 +17,7 @@ export type Design = z.infer<typeof DesignSchema>;
 export const ProductTemplateSchema = z.object({
   id: z.string(),
   name: z.string(),
-  type: z.enum(['T_SHIRT', 'MUG', 'POSTER', 'STICKER', 'TOTE_BAG']),
+  type: z.enum(["T_SHIRT", "MUG", "POSTER", "STICKER", "TOTE_BAG"]),
   basePrice: z.number().positive(),
   image: ImageSchema,
   sizes: z.array(z.string()).optional(),
@@ -36,7 +36,7 @@ export const CustomOrderSchema = z.object({
   size: z.string().optional(),
   color: z.string().optional(),
   totalPrice: z.number().positive(),
-  status: z.enum(['PENDING', 'PROCESSING', 'PRINTING', 'SHIPPED', 'DELIVERED']),
+  status: z.enum(["PENDING", "PROCESSING", "PRINTING", "SHIPPED", "DELIVERED"]),
   createdAt: z.date(),
   updatedAt: z.date(),
 });

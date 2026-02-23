@@ -2,14 +2,14 @@
 
 import { useState } from 'react'
 import { Package, Search, Filter, Download } from 'lucide-react'
-import { Card } from '@kaimosi/ui'
-import { Button } from '@kaimosi/ui'
-import { Input } from '@kaimosi/ui'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@kaimosi/ui'
-import { Badge } from '@kaimosi/ui'
+import { Card } from "@workspace/ui/components/card"
+import { Button } from "@workspace/ui/components/button"
+import { Input } from "@workspace/ui/components/input"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import { Badge } from "@workspace/ui/components/badge"
 import { OrderCard } from '@/components/print-on-demand/order-card'
 import { OrderFilters } from '@/components/print-on-demand/order-filters'
-import { Sheet, SheetContent, SheetTrigger } from '@kaimosi/ui'
+import { Sheet, SheetContent, SheetTrigger } from "@workspace/ui/components/sheet"
 
 export default function OrdersPage() {
   const [searchQuery, setSearchQuery] = useState('')

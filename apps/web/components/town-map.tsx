@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Card, CardContent, CardHeader, CardTitle } from "@kaimosi/ui"
-import { Badge } from "@kaimosi/ui"
-import { Button } from "@kaimosi/ui"
-import { Tabs, TabsList, TabsTrigger } from "@kaimosi/ui"
-import { Map, MapControls, MapMarker } from "@kaimosi/ui"
+import { Card, CardContent, CardHeader, CardTitle } from "@workspace/ui/components/card"
+import { Badge } from "@workspace/ui/components/badge"
+import { Button } from "@workspace/ui/components/button"
+import { Tabs, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import { Map, MapControls, MapMarker } from "@workspace/ui/components/map"
 import { stores, restaurants, hostels, townInfo } from "@/lib/data"
 import { MapPin, Store, Utensils, Bed, Landmark, X } from "lucide-react"
 

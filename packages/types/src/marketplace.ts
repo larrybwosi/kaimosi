@@ -1,5 +1,5 @@
-import { z } from 'zod';
-import { ImageSchema } from './common';
+import { z } from "zod";
+import { ImageSchema } from "./common.js";
 
 // Product types
 export const ProductSchema = z.object({
@@ -29,7 +29,13 @@ export const CartItemSchema = z.object({
 export type CartItem = z.infer<typeof CartItemSchema>;
 
 // Order types
-export const OrderStatusSchema = z.enum(['PENDING', 'PROCESSING', 'SHIPPED', 'DELIVERED', 'CANCELLED']);
+export const OrderStatusSchema = z.enum([
+  "PENDING",
+  "PROCESSING",
+  "SHIPPED",
+  "DELIVERED",
+  "CANCELLED",
+]);
 
 export const OrderSchema = z.object({
   id: z.string(),

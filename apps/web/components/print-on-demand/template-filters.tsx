@@ -1,10 +1,10 @@
 'use client'
 
-import { ScrollArea } from '@kaimosi/ui'
-import { Label } from '@kaimosi/ui'
-import { Checkbox } from '@kaimosi/ui'
-import { Button } from '@kaimosi/ui'
-import { Separator } from '@kaimosi/ui'
+import { ScrollArea } from "@workspace/ui/components/scroll-area"
+import { Label } from "@workspace/ui/components/label"
+import { Checkbox } from "@workspace/ui/components/checkbox"
+import { Button } from "@workspace/ui/components/button"
+import { Separator } from "@workspace/ui/components/separator"
 import { X } from 'lucide-react'
 
 interface TemplateFiltersProps {

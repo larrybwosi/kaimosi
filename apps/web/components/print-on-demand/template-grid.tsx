@@ -1,9 +1,9 @@
 'use client'
 
-import { Card } from '@kaimosi/ui'
-import { Badge } from '@kaimosi/ui'
-import { Button } from '@kaimosi/ui'
-import { Skeleton } from '@kaimosi/ui'
+import { Card } from "@workspace/ui/components/card"
+import { Badge } from "@workspace/ui/components/badge"
+import { Button } from "@workspace/ui/components/button"
+import { Skeleton } from "@workspace/ui/components/skeleton"
 import { Eye, ShoppingCart } from 'lucide-react'
 
 interface Template {

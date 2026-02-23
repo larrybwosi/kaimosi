@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { Button } from "@kaimosi/ui"
-import { Dialog, DialogContent, DialogTitle } from "@kaimosi/ui"
+import { Button } from "@workspace/ui/components/button"
+import { Dialog, DialogContent, DialogTitle } from "@workspace/ui/components/dialog"
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react"
 
 interface AttractionGalleryProps {

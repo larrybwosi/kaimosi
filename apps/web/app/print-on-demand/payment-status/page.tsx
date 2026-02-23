@@ -2,8 +2,8 @@
 
 import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { Card } from '@kaimosi/ui'
-import { Button } from '@kaimosi/ui'
+import { Card } from "@workspace/ui/components/card"
+import { Button } from "@workspace/ui/components/button"
 import { Loader2, CheckCircle2, XCircle, Clock } from 'lucide-react'
 import Link from 'next/link'
 

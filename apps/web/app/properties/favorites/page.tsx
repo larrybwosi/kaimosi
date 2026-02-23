@@ -3,16 +3,16 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Heart, MapPin, Bed, Bath, Maximize, Trash2, Share2, Settings } from 'lucide-react'
-import { Button } from '@kaimosi/ui'
-import { Card } from '@kaimosi/ui'
-import { Badge } from '@kaimosi/ui'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@kaimosi/ui'
-import { Input } from '@kaimosi/ui'
-import { Label } from '@kaimosi/ui'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@kaimosi/ui'
-import { Slider } from '@kaimosi/ui'
-import { Switch } from '@kaimosi/ui'
-import { Separator } from '@kaimosi/ui'
+import { Button } from "@workspace/ui/components/button"
+import { Card } from "@workspace/ui/components/card"
+import { Badge } from "@workspace/ui/components/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import { Input } from "@workspace/ui/components/input"
+import { Label } from "@workspace/ui/components/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@workspace/ui/components/select"
+import { Slider } from "@workspace/ui/components/slider"
+import { Switch } from "@workspace/ui/components/switch"
+import { Separator } from "@workspace/ui/components/separator"
 
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState<any[]>([])

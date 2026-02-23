@@ -1,16 +1,21 @@
-import { z } from 'zod';
-import { ImageSchema, LocationSchema } from './common';
+import { z } from "zod";
+import { ImageSchema, LocationSchema } from "./common.js";
 
 // Property types
 export const PropertyTypeSchema = z.enum([
-  'APARTMENT',
-  'HOUSE',
-  'VILLA',
-  'LAND',
-  'COMMERCIAL',
+  "APARTMENT",
+  "HOUSE",
+  "VILLA",
+  "LAND",
+  "COMMERCIAL",
 ]);
 
-export const PropertyStatusSchema = z.enum(['AVAILABLE', 'SOLD', 'RENTED', 'PENDING']);
+export const PropertyStatusSchema = z.enum([
+  "AVAILABLE",
+  "SOLD",
+  "RENTED",
+  "PENDING",
+]);
 
 export const PropertySchema = z.object({
   id: z.string(),
@@ -43,7 +48,7 @@ export const BookingSchema = z.object({
   startDate: z.date(),
   endDate: z.date(),
   totalPrice: z.number().positive(),
-  status: z.enum(['PENDING', 'CONFIRMED', 'CANCELLED']),
+  status: z.enum(["PENDING", "CONFIRMED", "CANCELLED"]),
   createdAt: z.date(),
 });
 

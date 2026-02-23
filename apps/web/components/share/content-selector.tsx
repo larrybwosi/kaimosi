@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@kaimosi/ui"
-import { Card } from "@kaimosi/ui"
-import { Input } from "@kaimosi/ui"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import { Card } from "@workspace/ui/components/card"
+import { Input } from "@workspace/ui/components/input"
 import { Search, MapPin, ShoppingBag, Calendar, Utensils, Sparkles } from "lucide-react"
 import Image from "next/image"
 

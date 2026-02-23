@@ -1,13 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { Card } from '@kaimosi/ui'
-import { Button } from '@kaimosi/ui'
-import { Input } from '@kaimosi/ui'
-import { Label } from '@kaimosi/ui'
-import { Textarea } from '@kaimosi/ui'
-import { Separator } from '@kaimosi/ui'
-import { RadioGroup, RadioGroupItem } from '@kaimosi/ui'
+import { Card } from "@workspace/ui/components/card"
+import { Button } from "@workspace/ui/components/button"
+import { Input } from "@workspace/ui/components/input"
+import { Label } from "@workspace/ui/components/label"
+import { Textarea } from "@workspace/ui/components/textarea"
+import { Separator } from "@workspace/ui/components/separator"
+import { RadioGroup, RadioGroupItem } from "@workspace/ui/components/radio-group"
 import { ArrowLeft, CreditCard, Smartphone, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'

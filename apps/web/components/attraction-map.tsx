@@ -1,7 +1,7 @@
 "use client"
 
-import { Button } from "@kaimosi/ui"
-import { Card, CardContent } from "@kaimosi/ui"
+import { Button } from "@workspace/ui/components/button"
+import { Card, CardContent } from "@workspace/ui/components/card"
 import { ExternalLink, MapPin, Navigation } from "lucide-react"
 
 interface AttractionMapProps {

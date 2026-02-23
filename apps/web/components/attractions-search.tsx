@@ -1,6 +1,6 @@
 "use client"
 
-import { Input } from "@kaimosi/ui"
+import { Input } from "@workspace/ui/components/input"
 import { Search } from "lucide-react"
 
 export function AttractionsSearch() {

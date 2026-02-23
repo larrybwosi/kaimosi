@@ -1,14 +1,14 @@
-import { z } from 'zod';
-import { ImageSchema, LocationSchema } from './common';
+import { z } from "zod";
+import { ImageSchema, LocationSchema } from "./common.js";
 
 // Attraction types
 export const AttractionCategorySchema = z.enum([
-  'HISTORICAL',
-  'NATURAL',
-  'CULTURAL',
-  'RECREATIONAL',
-  'RELIGIOUS',
-  'EDUCATIONAL',
+  "HISTORICAL",
+  "NATURAL",
+  "CULTURAL",
+  "RECREATIONAL",
+  "RELIGIOUS",
+  "EDUCATIONAL",
 ]);
 
 export const AttractionSchema = z.object({

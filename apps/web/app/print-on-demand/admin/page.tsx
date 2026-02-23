@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Card } from '@kaimosi/ui'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@kaimosi/ui'
-import { Badge } from '@kaimosi/ui'
+import { Card } from "@workspace/ui/components/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import { Badge } from "@workspace/ui/components/badge"
 import { AdminOrdersTable } from '@/components/print-on-demand/admin/admin-orders-table'
 import { AdminStats } from '@/components/print-on-demand/admin/admin-stats'
 import { AdminProductManagement } from '@/components/print-on-demand/admin/admin-product-management'

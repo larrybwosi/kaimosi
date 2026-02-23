@@ -1,11 +1,11 @@
 'use client'
 
-import { Card } from '@kaimosi/ui'
-import { Badge } from '@kaimosi/ui'
-import { Button } from '@kaimosi/ui'
+import { Card } from "@workspace/ui/components/card"
+import { Badge } from "@workspace/ui/components/badge"
+import { Button } from "@workspace/ui/components/button"
 import { Palette, Info } from 'lucide-react'
 import { useState } from 'react'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@kaimosi/ui'
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@workspace/ui/components/dialog"
 
 interface Product {
   id: string
