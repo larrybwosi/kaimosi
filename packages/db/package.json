@@ -1,0 +1,22 @@
+{
+  "name": "@workspace/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio",
+    "db:migrate": "prisma migrate dev",
+    "clean": "rm -rf .next node_modules",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "7.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "prisma": "7.4.1",
+    "typescript": "^5"
+  }
+}

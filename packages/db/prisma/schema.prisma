@@ -1,0 +1,925 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// BetterAuth User Schema
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  role          UserRole  @default(USER)
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  // Relations - Marketplace
+  accounts      Account[]
+  sessions      Session[]
+  orders        Order[]
+  reviews       Review[]
+  cartItems     CartItem[]
+
+  // Relations - Apartments
+  apartmentFavorites UserFavorite[] @relation("ApartmentFavorites")
+  apartmentPreferences UserPreference? @relation("ApartmentPreferences")
+
+  // Relations - Print-on-Demand
+  podDesigns    PodDesign[] @relation("PodDesigns")
+  podCarts      PodCart? @relation("PodCarts")
+  podOrders     PodOrder[] @relation("PodOrders")
+  podPayments   PodPayment[] @relation("PodPayments")
+  podPaymentTransactions PodPaymentTransaction[] @relation("PodPaymentTransactions")
+
+  @@map("users")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+// BetterAuth Account Schema (for OAuth)
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+// BetterAuth Session Schema
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+// Marketplace Product Categories
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  image       String?
+  parentId    String?   @map("parent_id")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  parent   Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children Category[] @relation("CategoryHierarchy")
+  products Product[]
+
+  @@index([slug])
+  @@map("categories")
+}
+
+// Marketplace Products
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?  @db.Text
+  price       Decimal  @db.Decimal(10, 2)
+  compareAt   Decimal? @map("compare_at") @db.Decimal(10, 2)
+  stock       Int      @default(0)
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
+  categoryId  String   @map("category_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  category  Category     @relation(fields: [categoryId], references: [id])
+  discounts Discount[]
+  reviews   Review[]
+  cartItems CartItem[]
+  orderItems OrderItem[]
+
+  @@index([slug])
+  @@index([categoryId])
+  @@index([featured])
+  @@map("products")
+}
+
+// Discounts and Promotions
+model Discount {
+  id          String        @id @default(cuid())
+  code        String?       @unique
+  type        DiscountType
+  value       Decimal       @db.Decimal(10, 2)
+  minPurchase Decimal?      @map("min_purchase") @db.Decimal(10, 2)
+  maxDiscount Decimal?      @map("max_discount") @db.Decimal(10, 2)
+  startDate   DateTime      @map("start_date")
+  endDate     DateTime      @map("end_date")
+  usageLimit  Int?          @map("usage_limit")
+  usageCount  Int           @default(0) @map("usage_count")
+  active      Boolean       @default(true)
+  createdAt   DateTime      @default(now()) @map("created_at")
+  updatedAt   DateTime      @updatedAt @map("updated_at")
+
+  products Product[]
+  orders   Order[]
+
+  @@index([code])
+  @@index([active])
+  @@map("discounts")
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED
+  FREE_SHIPPING
+}
+
+// Shopping Cart
+model CartItem {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  productId String   @map("product_id")
+  quantity  Int      @default(1)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+  @@index([userId])
+  @@map("cart_items")
+}
+
+// Orders
+model Order {
+  id            String      @id @default(cuid())
+  userId        String      @map("user_id")
+  orderNumber   String      @unique @map("order_number")
+  status        OrderStatus @default(PENDING)
+  subtotal      Decimal     @db.Decimal(10, 2)
+  shipping      Decimal     @default(0) @db.Decimal(10, 2)
+  tax           Decimal     @default(0) @db.Decimal(10, 2)
+  total         Decimal     @db.Decimal(10, 2)
+  discountId    String?     @map("discount_id")
+  shippingName  String      @map("shipping_name")
+  shippingEmail String      @map("shipping_email")
+  shippingPhone String?     @map("shipping_phone")
+  shippingAddress String    @map("shipping_address") @db.Text
+  notes         String?     @db.Text
+  createdAt     DateTime    @default(now()) @map("created_at")
+  updatedAt     DateTime    @updatedAt @map("updated_at")
+
+  user      User        @relation(fields: [userId], references: [id])
+  discount  Discount?   @relation(fields: [discountId], references: [id])
+  items     OrderItem[]
+
+  @@index([userId])
+  @@index([orderNumber])
+  @@index([status])
+  @@map("orders")
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+// Order Items
+model OrderItem {
+  id        String   @id @default(cuid())
+  orderId   String   @map("order_id")
+  productId String   @map("product_id")
+  quantity  Int
+  price     Decimal  @db.Decimal(10, 2)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@map("order_items")
+}
+
+// Product Reviews
+model Review {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  productId String   @map("product_id")
+  rating    Int
+  title     String?
+  comment   String?  @db.Text
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+  @@index([productId])
+  @@index([rating])
+  @@map("reviews")
+}
+
+// ============================================================
+// PRINT-ON-DEMAND SERVICE MODELS
+// ============================================================
+
+// POD Design Model
+model PodDesign {
+  id                    String     @id @default(cuid())
+  userId                String     @map("user_id")
+  name                  String
+  thumbnail             String?
+  description           String?    @db.Text
+  productType           String     // "tshirt", "mug", "poster", etc.
+  isPublished           Boolean    @default(false)
+  isTemplate            Boolean    @default(false)
+  createdAt             DateTime   @default(now()) @map("created_at")
+  updatedAt             DateTime   @updatedAt @map("updated_at")
+  deletedAt             DateTime?  @map("deleted_at")
+
+  // Relations
+  user                  User       @relation("PodDesigns", fields: [userId], references: [id], onDelete: Cascade)
+  versions              PodDesignVersion[]
+  podCartItems          PodCartItem[]
+  podOrderItems         PodOrderItem[]
+
+  @@index([userId])
+  @@index([productType])
+  @@index([isPublished])
+  @@index([deletedAt])
+  @@map("pod_designs")
+}
+
+// POD Design Version Model - for version control
+model PodDesignVersion {
+  id                    String     @id @default(cuid())
+  podDesignId           String     @map("pod_design_id")
+  versionNumber         Int
+  designData            Json       // Complete design canvas state
+  label                 String?    // e.g., "Final", "Draft", "Client Review"
+  createdAt             DateTime   @default(now()) @map("created_at")
+
+  // Relations
+  podDesign             PodDesign  @relation(fields: [podDesignId], references: [id], onDelete: Cascade)
+
+  @@unique([podDesignId, versionNumber])
+  @@index([podDesignId])
+  @@map("pod_design_versions")
+}
+
+// POD Product Model
+model PodProduct {
+  id                    String     @id @default(cuid())
+  name                  String
+  category              String     // "apparel", "drinkware", "home", "accessories"
+  sku                   String     @unique
+  description           String?    @db.Text
+  basePrice             Decimal    @db.Decimal(10, 2)
+  image                 String?
+  dimensions            Json?      // { width, height, depth, unit }
+  materials             String[]   @default([])
+  colors                String[]   @default([])
+  sizes                 String[]   @default([])
+  printAreas            Json?      // Printable areas with dimensions
+  isActive              Boolean    @default(true)
+  createdAt             DateTime   @default(now()) @map("created_at")
+  updatedAt             DateTime   @updatedAt @map("updated_at")
+
+  // Relations
+  podCartItems          PodCartItem[]
+  podOrderItems         PodOrderItem[]
+  templates             PodTemplate[]
+
+  @@index([category])
+  @@index([sku])
+  @@index([isActive])
+  @@map("pod_products")
+}
+
+// POD Template Model
+model PodTemplate {
+  id                    String     @id @default(cuid())
+  name                  String
+  description           String?    @db.Text
+  podProductId          String     @map("pod_product_id")
+  category              String
+  thumbnail             String?
+  previewImage          String?
+  designData            Json       // Template design structure
+  tags                  String[]   @default([])
+  isActive              Boolean    @default(true)
+  createdAt             DateTime   @default(now()) @map("created_at")
+  updatedAt             DateTime   @updatedAt @map("updated_at")
+
+  // Relations
+  podProduct            PodProduct @relation(fields: [podProductId], references: [id], onDelete: Cascade)
+
+  @@index([podProductId])
+  @@index([category])
+  @@index([isActive])
+  @@map("pod_templates")
+}
+
+// POD Cart Model
+model PodCart {
+  id                    String     @id @default(cuid())
+  userId                String     @unique @map("user_id")
+  createdAt             DateTime   @default(now()) @map("created_at")
+  updatedAt             DateTime   @updatedAt @map("updated_at")
+
+  // Relations
+  user                  User       @relation("PodCarts", fields: [userId], references: [id], onDelete: Cascade)
+  items                 PodCartItem[]
+
+  @@map("pod_carts")
+}
+
+// POD Cart Item Model
+model PodCartItem {
+  id                    String     @id @default(cuid())
+  podCartId             String     @map("pod_cart_id")
+  podProductId          String     @map("pod_product_id")
+  podDesignId           String     @map("pod_design_id")
+  quantity              Int        @default(1)
+  size                  String?
+  color                 String?
+  customOptions         Json?      // Additional customization like text, placement
+  price                 Decimal    @db.Decimal(10, 2) // Price at time of adding
+  createdAt             DateTime   @default(now()) @map("created_at")
+  updatedAt             DateTime   @updatedAt @map("updated_at")
+
+  // Relations
+  podCart               PodCart    @relation(fields: [podCartId], references: [id], onDelete: Cascade)
+  podProduct            PodProduct @relation(fields: [podProductId], references: [id])
+  podDesign             PodDesign  @relation(fields: [podDesignId], references: [id])
+
+  @@index([podCartId])
+  @@index([podProductId])
+  @@index([podDesignId])
+  @@map("pod_cart_items")
+}
+
+// POD Order Model
+model PodOrder {
+  id                    String     @id @default(cuid())
+  userId                String     @map("user_id")
+  orderNumber           String     @unique @map("order_number")
+  status                PodOrderStatus @default(PENDING)
+  paymentStatus         PodPaymentStatus @default(UNPAID)
+  subtotal              Decimal    @db.Decimal(10, 2)
+  tax                   Decimal    @db.Decimal(10, 2) @default(0)
+  shippingCost          Decimal    @db.Decimal(10, 2)
+  totalAmount           Decimal    @db.Decimal(10, 2)
+  shippingMethod        String     // "standard", "express", "overnight"
+  shippingAddress       String?    @db.Text
+  trackingNumber        String?    @map("tracking_number")
+  notes                 String?    @db.Text
+  createdAt             DateTime   @default(now()) @map("created_at")
+  updatedAt             DateTime   @updatedAt @map("updated_at")
+  deletedAt             DateTime?  @map("deleted_at")
+
+  // Relations
+  user                  User       @relation("PodOrders", fields: [userId], references: [id], onDelete: Cascade)
+  items                 PodOrderItem[]
+  payment               PodPayment?
+  fulfillmentTimeline   PodFulfillmentTimeline[]
+
+  @@index([userId])
+  @@index([status])
+  @@index([paymentStatus])
+  @@index([orderNumber])
+  @@index([createdAt])
+  @@index([deletedAt])
+  @@map("pod_orders")
+}
+
+// POD Order Item Model
+model PodOrderItem {
+  id                    String     @id @default(cuid())
+  podOrderId            String     @map("pod_order_id")
+  podProductId          String     @map("pod_product_id")
+  podDesignId           String     @map("pod_design_id")
+  quantity              Int
+  size                  String?
+  color                 String?
+  customOptions         Json?
+  unitPrice             Decimal    @db.Decimal(10, 2)
+  totalPrice            Decimal    @db.Decimal(10, 2)
+  createdAt             DateTime   @default(now()) @map("created_at")
+
+  // Relations
+  podOrder              PodOrder   @relation(fields: [podOrderId], references: [id], onDelete: Cascade)
+  podProduct            PodProduct @relation(fields: [podProductId], references: [id])
+  podDesign             PodDesign  @relation(fields: [podDesignId], references: [id])
+
+  @@index([podOrderId])
+  @@index([podProductId])
+  @@index([podDesignId])
+  @@map("pod_order_items")
+}
+
+// POD Payment Model - M-Pesa Integration
+model PodPayment {
+  id                    String     @id @default(cuid())
+  podOrderId            String     @unique @map("pod_order_id")
+  userId                String     @map("user_id")
+  amount                Decimal    @db.Decimal(10, 2)
+  currency              String     @default("KES")
+  method                String     @default("mpesa") // payment method
+  status                PodPaymentStatus @default(UNPAID)
+  mpesaReceiptNumber    String?    @unique @map("mpesa_receipt_number") // M-Pesa receipt/confirmation code
+  mpesaPhoneNumber      String?    @map("mpesa_phone_number") // Phone number used for M-Pesa
+  failureReason         String?    @map("failure_reason")
+  retryCount            Int        @default(0) @map("retry_count")
+  lastRetryAt           DateTime?  @map("last_retry_at")
+  createdAt             DateTime   @default(now()) @map("created_at")
+  updatedAt             DateTime   @updatedAt @map("updated_at")
+
+  // Relations
+  podOrder              PodOrder   @relation(fields: [podOrderId], references: [id], onDelete: Cascade)
+  user                  User       @relation("PodPayments", fields: [userId], references: [id], onDelete: Cascade)
+  transactions          PodPaymentTransaction[]
+
+  @@index([podOrderId])
+  @@index([userId])
+  @@index([status])
+  @@index([mpesaReceiptNumber])
+  @@index([createdAt])
+  @@map("pod_payments")
+}
+
+// POD Payment Transaction Model - for M-Pesa transaction logs
+model PodPaymentTransaction {
+  id                    String     @id @default(cuid())
+  podPaymentId          String     @map("pod_payment_id")
+  userId                String     @map("user_id")
+  transactionId         String?    @unique @map("transaction_id") // M-Pesa CheckoutRequestID or similar
+  phone                 String
+  amount                Decimal    @db.Decimal(10, 2)
+  status                PodTransactionStatus @default(INITIATED)
+  mpesaResponseCode     String?    @map("mpesa_response_code") // M-Pesa response code
+  mpesaResponseDesc     String?    @map("mpesa_response_desc") // M-Pesa response description
+  callbackData          Json?      @map("callback_data") // Raw M-Pesa callback data
+  initiatedAt           DateTime   @default(now()) @map("initiated_at")
+  completedAt           DateTime?  @map("completed_at")
+
+  // Relations
+  podPayment            PodPayment @relation(fields: [podPaymentId], references: [id], onDelete: Cascade)
+  user                  User       @relation("PodPaymentTransactions", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([podPaymentId])
+  @@index([userId])
+  @@index([status])
+  @@index([transactionId])
+  @@index([phone])
+  @@index([initiatedAt])
+  @@map("pod_payment_transactions")
+}
+
+// POD Fulfillment Timeline Model - track order status changes
+model PodFulfillmentTimeline {
+  id                    String     @id @default(cuid())
+  podOrderId            String     @map("pod_order_id")
+  status                PodOrderStatus
+  message               String?    @db.Text
+  createdAt             DateTime   @default(now()) @map("created_at")
+
+  // Relations
+  podOrder              PodOrder   @relation(fields: [podOrderId], references: [id], onDelete: Cascade)
+
+  @@index([podOrderId])
+  @@index([status])
+  @@map("pod_fulfillment_timelines")
+}
+
+// ============================================================
+// POD ENUMS
+// ============================================================
+
+enum PodOrderStatus {
+  PENDING          // Order created, awaiting payment
+  PAID             // Payment confirmed
+  PROCESSING       // Order received, preparing for production
+  PRODUCTION       // Item is being produced
+  QUALITY_CHECK    // Quality verification
+  SHIPPING         // In transit to customer
+  DELIVERED        // Delivered to customer
+  CANCELLED        // Order cancelled
+  REFUNDED         // Payment refunded
+}
+
+enum PodPaymentStatus {
+  UNPAID           // Payment pending
+  PENDING          // Payment initiated, awaiting confirmation
+  COMPLETED        // Payment successful
+  FAILED           // Payment failed
+  CANCELLED        // Payment cancelled
+  REFUNDED         // Payment refunded
+}
+
+enum PodTransactionStatus {
+  INITIATED        // M-Pesa STK pushed, awaiting user input
+  PROCESSING       // Payment being processed
+  COMPLETED        // Transaction successful
+  FAILED           // Transaction failed
+  TIMEOUT          // Request timeout
+  CANCELLED        // User cancelled
+}
+
+// ============================================================
+// APARTMENT/REAL ESTATE SERVICE MODELS
+// ============================================================
+
+// Location hierarchy model
+model Location {
+  id                    String     @id @default(cuid())
+  country               String
+  city                  String
+  district              String
+  subArea               String?
+  latitude              Float?
+  longitude             Float?
+  slug                  String     @unique
+  createdAt             DateTime   @default(now()) @map("created_at")
+
+  // Relations
+  properties            Property[]
+  complexes             PropertyComplex[]
+
+  @@unique([country, city, district, subArea])
+  @@index([city])
+  @@index([district])
+  @@map("locations")
+}
+
+// Main property listing model
+model Property {
+  id                    String     @id @default(cuid())
+  title                 String
+  description           String?    @db.Text
+  type                  PropertyType // "apartment", "house", "villa", "commercial"
+  subType               String?    // "studio", "1-bed", "2-bed", etc.
+  listingType           ListingType @default(FOR_RENT) // "for_rent", "for_sale"
+  status                PropertyStatus @default(AVAILABLE)
+  
+  // Pricing
+  price                 Decimal    @db.Decimal(12, 2)
+  priceUnit             String     @default("KES") // Currency
+  pricePerUnit          String     @default("month") // "month", "year", "total"
+  
+  // Property Details
+  bedrooms              Int
+  bathrooms             Int
+  areaSize              Float?     // in square meters
+  furnishingType        String?    // "furnished", "unfurnished", "semi-furnished"
+  yearBuilt             Int?
+  floorNumber           Int?
+  totalFloors           Int?
+  
+  // Location
+  locationId            String     @map("location_id")
+  streetAddress         String?
+  coordinates           Json?      // { lat, lng }
+  
+  // Media
+  featuredImageUrl      String?
+  createdAt             DateTime   @default(now()) @map("created_at")
+  updatedAt             DateTime   @updatedAt @map("updated_at")
+  publishedAt           DateTime?  @map("published_at")
+  deletedAt             DateTime?  @map("deleted_at")
+  
+  // Relations
+  location              Location   @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  images                PropertyImage[]
+  floorPlans            FloorPlan[]
+  amenities             PropertyAmenity[] @relation("PropertyAmenities")
+  userFavorites         UserFavorite[]
+  shares                PropertyShare[]
+  views                 PropertyView[]
+  priceHistory          PriceHistory[]
+  analytics             PropertyAnalytics?
+  complexProperties     ComplexProperty[]
+
+  @@index([locationId])
+  @@index([type])
+  @@index([listingType])
+  @@index([status])
+  @@index([price])
+  @@index([bedrooms])
+  @@index([createdAt])
+  @@index([publishedAt])
+  @@index([deletedAt])
+  @@map("properties")
+}
+
+// Property images for carousel gallery
+model PropertyImage {
+  id                    String     @id @default(cuid())
+  propertyId            String     @map("property_id")
+  url                   String
+  thumbnailUrl          String?
+  caption               String?
+  displayOrder          Int        @default(0)
+  imageType             String     @default("photo") // "photo", "floorplan"
+  createdAt             DateTime   @default(now()) @map("created_at")
+
+  // Relations
+  property              Property   @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId])
+  @@index([displayOrder])
+  @@map("property_images")
+}
+
+// Floor plans with dimensions
+model FloorPlan {
+  id                    String     @id @default(cuid())
+  propertyId            String     @map("property_id")
+  name                  String?    // e.g., "Master Bedroom", "Living Area"
+  imageUrl              String
+  dimensions            Json?      // { width, height, unit }
+  areaSize              Float?     // in square meters
+  description           String?    @db.Text
+  displayOrder          Int        @default(0)
+  createdAt             DateTime   @default(now()) @map("created_at")
+
+  // Relations
+  property              Property   @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId])
+  @@map("floor_plans")
+}
+
+// Amenities lookup table
+model Amenity {
+  id                    String     @id @default(cuid())
+  name                  String     @unique
+  category              String     // "facility", "feature", "service"
+  icon                  String?
+  createdAt             DateTime   @default(now()) @map("created_at")
+
+  // Relations
+  propertyAmenities     PropertyAmenity[]
+
+  @@index([category])
+  @@map("amenities")
+}
+
+// Junction table for property amenities
+model PropertyAmenity {
+  id                    String     @id @default(cuid())
+  propertyId            String     @map("property_id")
+  amenityId             String     @map("amenity_id")
+  
+  // Relations
+  property              Property   @relation("PropertyAmenities", fields: [propertyId], references: [id], onDelete: Cascade)
+  amenity               Amenity    @relation(fields: [amenityId], references: [id], onDelete: Cascade)
+
+  @@unique([propertyId, amenityId])
+  @@index([propertyId])
+  @@index([amenityId])
+  @@map("property_amenities")
+}
+
+// Complex/Building grouping
+model PropertyComplex {
+  id                    String     @id @default(cuid())
+  name                  String
+  description           String?    @db.Text
+  locationId            String     @map("location_id")
+  totalUnits           Int?
+  imageUrl              String?
+  createdAt             DateTime   @default(now()) @map("created_at")
+
+  // Relations
+  location              Location   @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  properties            ComplexProperty[]
+
+  @@index([locationId])
+  @@map("property_complexes")
+}
+
+// Junction for properties in complexes
+model ComplexProperty {
+  id                    String     @id @default(cuid())
+  complexId             String     @map("complex_id")
+  propertyId            String     @map("property_id")
+  unitNumber            String?
+  
+  // Relations
+  complex               PropertyComplex @relation(fields: [complexId], references: [id], onDelete: Cascade)
+  property              Property   @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([complexId, propertyId])
+  @@index([complexId])
+  @@index([propertyId])
+  @@map("complex_properties")
+}
+
+// User favorites/wishlist
+model UserFavorite {
+  id                    String     @id @default(cuid())
+  userId                String     @map("user_id")
+  propertyId            String     @map("property_id")
+  listName              String     @default("Favorites")
+  notes                 String?    @db.Text
+  createdAt             DateTime   @default(now()) @map("created_at")
+
+  // Relations
+  user                  User       @relation("ApartmentFavorites", fields: [userId], references: [id], onDelete: Cascade)
+  property              Property   @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, propertyId])
+  @@index([userId])
+  @@index([propertyId])
+  @@map("user_favorites")
+}
+
+// User preferences for personalization
+model UserPreference {
+  id                    String     @id @default(cuid())
+  userId                String     @unique @map("user_id")
+  minPrice              Decimal?   @db.Decimal(12, 2)
+  maxPrice              Decimal?   @db.Decimal(12, 2)
+  preferredLocations    String[]   @default([])
+  bedrooms              Int[]      @default([])
+  bathrooms            Int[]      @default([])
+  propertyTypes        String[]   @default([])
+  preferredAmenities    String[]   @default([])
+  petFriendly          Boolean    @default(false)
+  furnished            Boolean?
+  leaseType            String?    // "long-term", "short-term"
+  moveInDate           DateTime?
+  notificationsEnabled Boolean    @default(true)
+  createdAt             DateTime   @default(now()) @map("created_at")
+  updatedAt             DateTime   @updatedAt @map("updated_at")
+
+  // Relations
+  user                  User       @relation("ApartmentPreferences", fields: [userId], references: [id], onDelete: Cascade)
+  searchHistory         SearchQuery[]
+  recommendations       Recommendation[]
+
+  @@map("user_preferences")
+}
+
+// Search history for ML recommendations
+model SearchQuery {
+  id                    String     @id @default(cuid())
+  userPreferenceId      String     @map("user_preference_id")
+  query                 String?
+  filters               Json?
+  resultsCount          Int?
+  selectedPropertyId    String?    // Property clicked after search
+  createdAt             DateTime   @default(now()) @map("created_at")
+
+  // Relations
+  userPreference        UserPreference @relation(fields: [userPreferenceId], references: [id], onDelete: Cascade)
+
+  @@index([userPreferenceId])
+  @@index([createdAt])
+  @@map("search_queries")
+}
+
+// ML-based recommendations
+model Recommendation {
+  id                    String     @id @default(cuid())
+  userPreferenceId      String     @map("user_preference_id")
+  propertyId            String     @map("property_id")
+  score                 Float      // 0-100 confidence score
+  reason                String?    // Why recommended
+  viewed                Boolean    @default(false)
+  viewedAt              DateTime?  @map("viewed_at")
+  createdAt             DateTime   @default(now()) @map("created_at")
+  expiresAt             DateTime   @map("expires_at") // 30 days from creation
+
+  // Relations
+  userPreference        UserPreference @relation(fields: [userPreferenceId], references: [id], onDelete: Cascade)
+
+  @@index([userPreferenceId])
+  @@index([propertyId])
+  @@index([score])
+  @@index([expiresAt])
+  @@map("recommendations")
+}
+
+// Property views for analytics
+model PropertyView {
+  id                    String     @id @default(cuid())
+  propertyId            String     @map("property_id")
+  userId                String?    @map("user_id")
+  sessionId             String?    @map("session_id")
+  source                String?    // "search", "recommendation", "direct"
+  viewedAt              DateTime   @default(now()) @map("viewed_at")
+
+  // Relations
+  property              Property   @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId])
+  @@index([userId])
+  @@index([viewedAt])
+  @@map("property_views")
+}
+
+// Price history for trending
+model PriceHistory {
+  id                    String     @id @default(cuid())
+  propertyId            String     @map("property_id")
+  price                 Decimal    @db.Decimal(12, 2)
+  changeReason          String?    // "initial", "reduction", "increase"
+  createdAt             DateTime   @default(now()) @map("created_at")
+
+  // Relations
+  property              Property   @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId])
+  @@index([createdAt])
+  @@map("price_history")
+}
+
+// Social shares tracking
+model PropertyShare {
+  id                    String     @id @default(cuid())
+  propertyId            String     @map("property_id")
+  userId                String?    @map("user_id")
+  platform              String     // "whatsapp", "facebook", "twitter", "email", "link"
+  shareToken            String     @unique
+  clicks                Int        @default(0)
+  feedback              String?    @db.Text
+  createdAt             DateTime   @default(now()) @map("created_at")
+
+  // Relations
+  property              Property   @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@index([propertyId])
+  @@index([shareToken])
+  @@index([createdAt])
+  @@map("property_shares")
+}
+
+// Analytics aggregation
+model PropertyAnalytics {
+  id                    String     @id @default(cuid())
+  propertyId            String     @unique @map("property_id")
+  totalViews            Int        @default(0)
+  totalFavorites        Int        @default(0)
+  totalShares           Int        @default(0)
+  totalShareClicks      Int        @default(0)
+  contactRequests       Int        @default(0)
+  avgTimeOnPage         Int?       // in seconds
+  lastUpdated           DateTime   @updatedAt @map("last_updated")
+
+  // Relations
+  property              Property   @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@map("property_analytics")
+}
+
+// ============================================================
+// APARTMENT ENUMS
+// ============================================================
+
+enum PropertyType {
+  APARTMENT
+  HOUSE
+  VILLA
+  COMMERCIAL
+  LAND
+  STUDIO
+}
+
+enum ListingType {
+  FOR_RENT
+  FOR_SALE
+}
+
+enum PropertyStatus {
+  AVAILABLE
+  RENTED
+  SOLD
+  UNLISTED
+  SOLD_OUT
+}
