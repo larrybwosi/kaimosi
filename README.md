@@ -119,26 +119,16 @@ kaimosi/
 ## 📚 Documentation
 
 ### Getting Started
-- **[🎯 Setup Plan](./MONOREPO_SETUP_PLAN.md)** - Complete architecture and migration plan
-- **[📖 Implementation Guide](./IMPLEMENTATION_GUIDE.md)** - Step-by-step setup instructions
-- **[✅ Migration Checklist](./MIGRATION_CHECKLIST.md)** - Track your migration progress
 - **[⚡ Quick Reference](./QUICK_REFERENCE.md)** - Essential commands and patterns
-
-### Architecture
-- **[🏗️ Architecture Visual](./ARCHITECTURE_VISUAL.md)** - Visual diagrams and data flow
-- **[📋 Package Templates](./PACKAGE_TEMPLATES.md)** - Templates for creating new packages/apps
-- **[🗂️ Monorepo Architecture](./MONOREPO_ARCHITECTURE.md)** - Detailed architecture guide
-
-### Features
-- **[🏢 Apartment Features](./APARTMENT_FEATURE_GUIDE.md)** - Property listing features
-- **[📝 Content Management](./CONTENT_MANAGEMENT_GUIDE.md)** - CMS guide
-- **[💳 M-Pesa Integration](./MPESA_INTEGRATION.md)** - Payment integration
-- **[💾 Database Setup](./DATABASE_SETUP.md)** - Database configuration
-- **[🔧 Schema Maintenance](./SCHEMA_MAINTENANCE.md)** - Schema management
+- **[🏗️ Architecture](./docs/architecture.md)** - Monorepo structure and technology stack
+- **[💻 Development](./docs/development.md)** - Workflow and environment setup
+- **[💾 Database](./docs/database.md)** - Database setup and maintenance
 
 ### Deployment
-- **[🚀 Deployment Guide](./DEPLOYMENT.md)** - Production deployment
-- **[☁️ Sanity Deployment](./SANITY_DEPLOYMENT_GUIDE.md)** - CMS deployment
+- **[🚀 Deployment Guide](./docs/deployment.md)** - Production deployment
+
+### Features
+- **[💳 M-Pesa Integration](./MPESA_INTEGRATION.md)** - Payment integration
 
 ---
 
